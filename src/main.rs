@@ -42,9 +42,15 @@ fn main() {
         let va = phys_to_virt(PFLASH_START.into()).as_usize();
         let ptr = va as *const u32;
         unsafe {
-            println!("Try to access pflash dev region [{:#X}], got {:#X}", va, *ptr);
+            println!(
+                "Try to access pflash dev region [{:#X}], got {:#X}",
+                va, *ptr
+            );
             let magic = (*ptr).to_ne_bytes();
-            println!("Got pflash magic: {}", core::str::from_utf8(&magic).unwrap());
+            println!(
+                "Got pflash magic: {}",
+                core::str::from_utf8(&magic).unwrap()
+            );
         }
     }
     #[cfg(not(feature = "axstd"))]
